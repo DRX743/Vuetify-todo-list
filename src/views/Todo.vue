@@ -3,11 +3,11 @@
 
     <v-list flat class="pt-0">
     <div v-for="task in tasks" :key="task.id">
-        <v-list-item>
-          <template v-slot:default="{ active }">
+        <v-list-item @click="doneTask(task.id)" >
+          <template v-slot:default>
             <v-list-item-action>
               <v-checkbox
-                :input-value="active"
+                :input-value="task.done"
                 color="primary"
               ></v-checkbox>
             </v-list-item-action>
@@ -34,17 +34,27 @@
         tasks: [
           {
             id: 1,
-            title: 'Getup'
+            title: 'Getup',
+            done: false
           },
           {
             id: 2,
-            title: 'Clean'
+            title: 'Clean',
+            done: false
           },
                     {
-            id: 1,
-            title: 'Go out'
+            id: 3,
+            title: 'Go out',
+            done: false
           },
         ]
+      }
+    },
+    methods: {
+      doneTask(id) {
+        //console.log('id', id);
+        let task = this.tasks.filter(task => task.id === id)[0]
+        task.done = !task.done
       }
     }
   }
