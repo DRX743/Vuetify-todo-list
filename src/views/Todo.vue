@@ -3,7 +3,10 @@
 
     <v-list flat class="pt-0">
     <div v-for="task in tasks" :key="task.id">
-        <v-list-item @click="doneTask(task.id)" >
+        <v-list-item 
+        @click="doneTask(task.id)" 
+        :class="{ 'blue lighten-5' : task.done }"
+        >
           <template v-slot:default>
             <v-list-item-action>
               <v-checkbox
